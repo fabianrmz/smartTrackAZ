@@ -1,0 +1,122 @@
+<!DOCTYPE html
+<html>
+  <head>
+
+      <meta charset="utf-8">
+      <title>Smart Tracking</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>   
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+  </head>
+
+  <body>
+
+      <main>
+          <nav>  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>  </nav>
+
+            
+          <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+              <div class="background">
+                <img src="img/4k-wallpaper-beautiful-bloom-2123755.jpg" style="filter:brightness(0.4);filter: alpha(opacity=50);">
+              </div>
+              <br>
+              <a href="#user" id="photoUserUrl"></a>
+              <a href="#name"><span class="white-text name" id="nameUser"></span></a>
+              <a href="#email"><span class="white-text email" id="emailUser"></span></a>
+            </div>
+            <li><a href="#!" ><i class="material-icons active">home</i>Home</a></li>
+            <div id="logButtons"> </div>
+            
+            <li><a href="medicinesList.html"> <i class="material-icons">healing</i>Our Medicines</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Info</a></li>
+            <li><a class="waves-effect modal-trigger" href="#modalAbout">About Us</a></li>
+          </ul>
+
+
+          <!--content here-->
+          <div class="slider">
+              <ul class="slides">
+                <li>
+                  <img src="img/adult-biology-chemical-356040.jpg" style="opacity: 0.5;-webkit-filter: grayscale(100%);filter: grayscale(100%);"> <!-- random image -->
+                  <div class="caption center-align">
+                    <h3>Our science</h3>
+                    <h5 class="light grey-text text-lighten-3">At AstraZeneca, science is at the core of everything we do</h5>
+                  </div>
+                </li>
+                <li>
+                  <img src="img/biochemistry-biology-blue-2280571 (1).jpg" style="opacity: 0.5;-webkit-filter: grayscale(100%);filter: grayscale(100%);"> <!-- random image -->
+                  <div class="caption left-align">
+                    <h3>Tracking system</h3>
+                    <h5 class="light grey-text text-lighten-3">Help us to ensure quality of our products</h5>
+                  </div>
+                </li>
+                <li>
+                  <img src="img/blue-bracelet-capsule-1424538.jpg" style="opacity: 0.5;-webkit-filter: grayscale(100%);filter: grayscale(100%);"> <!-- random image -->
+                  <div class="caption right-align">
+                    <h3>Sign in today</h3>
+                    <h5 class="light grey-text text-lighten-3">And get rewards and </h5>
+                  </div>
+                </li>
+                <li>
+                  <img src="img/addiction-antibiotic-capsules-159211.jpg" style="opacity: 0.5;-webkit-filter: grayscale(100%);filter: grayscale(100%);"> <!-- random image -->
+                  <div class="caption center-align">
+                    <h3>This is our big Tagline!</h3>
+                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                  </div>
+                </li>
+              </ul>
+            </div>
+                
+
+
+
+            <div id="modalAbout" class="modal">
+                <div class="modal-content">
+                  <h4>About us</h4>
+                  <p>A bunch of text</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+              </div>
+                <!--JavaScript at end of body for optimized loading-->
+                <!-- The core Firebase JS SDK is always required and must be listed first -->
+        
+
+        
+      </main>
+      <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
+
+
+
+
+<script src="/__/firebase/7.2.2/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="/__/firebase/7.2.2/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="/__/firebase/7.2.2/firebase-auth.js"></script>
+  <script src="/__/firebase/7.2.2/firebase-firestore.js"></script>
+  <script src="js/firebaseServiceCDN.js">
+      
+    
+    </script>
+       
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+            <script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script>
+            <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/materializeFunctions.js"></script>
+        
+        <script type="text/javascript" src="js/authFirebase.js"></script>
+  </body>
+</html>
