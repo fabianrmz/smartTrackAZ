@@ -22,13 +22,17 @@ firebase.auth().onAuthStateChanged(function(user) {
 
         //
         document.getElementById("logButtons").innerHTML='<li><a href="#!" onclick="logOut()" id="buttonLog"><i class="material-icons">cancel</i>Log off</a></li>';
-        
+        checkUser(uid);
+
+        var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Make survey<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalCamera" onclick="setSurvey()" >arrow_forward</i></h4></a></div></li>  ';
+        document.getElementById("optionPatient").innerHTML=surveyElement;
 
     } else {
         document.getElementById("logButtons").innerHTML='<li><a href="#!" onclick="googleSignIn()" id="buttonLog"><i class="material-icons">account_circle</i>Log in</a></li>';
         document.getElementById("photoUserUrl").innerHTML= "";
         document.getElementById("nameUser").innerHTML= "Welcome back!!";
         document.getElementById("emailUser").innerHTML= "";
+        document.getElementById("optionPatient").innerHTML="";
 
         
         
@@ -69,3 +73,5 @@ function googleSignIn() {
         // An error happened.
       });
   }
+
+  
