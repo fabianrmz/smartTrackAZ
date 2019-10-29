@@ -1,9 +1,3 @@
-// Ver detalles medicamentos
-firebase.initializeApp({
-    apiKey: '### FIREBASE API KEY ###',
-    authDomain: '### FIREBASE AUTH DOMAIN ###',
-    projectId: '### CLOUD FIRESTORE PROJECT ID ###'
-});
 var db = firebase.firestore();
 var medRef = db.collection("medicine");
 var patFbRef = db.collection("pacientFeedbacks");
@@ -21,11 +15,16 @@ function displayAllMedInfo(docMed){
 
 function submitRetro(){
     // Condiciones para subirlo
-    var as = document.getElementById("idDocumento").value;
-    var bs = document.getElementById("idDocumento").value;
-    if(as != null && bs != null){
+    var desc = document.getElementById("desc").value;
+    var lote = document.getElementById("lote").value;
+    var ts = firebase.firestore.FieldValue.serverTimestamp();
+    var userID = "ktQrdD6BBPeqjMKUBxFUsWo9U882"//obtener UserID
+    if(desc != null && lote != null){
         patFbRef.add({
-
+            description: desc,
+            lote: lote,
+            userId: userID,
+            time: ts
         })
     }
 }
