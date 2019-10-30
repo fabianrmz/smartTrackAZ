@@ -25,7 +25,8 @@ function checkUser(id){
         if (doc.exists) {
             if(doc.data().userType=="admin"){
                 var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Recover surveys<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalAdmin">arrow_forward</i></h4></a></div></li> </ul> ';
-                document.getElementById("optionPatient").innerHTML=surveyElement;
+                var makeFeedback =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Check batch<a href="#fb" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalFeedback">arrow_forward</i></h4></a></div></li> </ul> ';
+                document.getElementById("optionPatient").innerHTML=surveyElement + makeFeedback;
 
                 document.getElementById("emailUser").innerHTML+="<br>Admin🛡 ️"
 
