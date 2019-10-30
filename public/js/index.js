@@ -20,10 +20,22 @@ function openSidenav(){
 function checkUser(id){
     uid=id;
     var docRef = db.collection("users").doc(uid);
+    
     docRef.get().then(function(doc) {
         if (doc.exists) {
-            
-            
+            if(doc.data().userType=="admin"){
+                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Recover surveys<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalAdmin">arrow_forward</i></h4></a></div></li> </ul> ';
+                document.getElementById("optionPatient").innerHTML=surveyElement;
+
+                document.getElementById("emailUser").innerHTML+="<br>Admin🛡 ️"
+
+            }else{//patient options
+                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Make survey<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalCamera"  >arrow_forward</i></h4></a></div></li> <li class="collection-item"><div><h4>My rewards<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalCoupons" onclick="getCoupons()" >arrow_forward</i></h4></a></div></li> <li class="collection-item"><div><h4>My feedbacks<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalFeedbacks"  onclick="getFeedbacks()" >arrow_forward</i></h4></a></div></li> </ul> ';
+                document.getElementById("optionPatient").innerHTML=surveyElement;
+                document.getElementById("emailUser").innerHTML+="<br>Patient 🤒 ️"
+                
+            }
+              
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -90,7 +102,7 @@ function setCamera(){
 }
 
 function getCoupons(){
-    console.log("in here we get the rewards on the modal available for the user")
+    console.log("in here we get the reward points on the modal available for the user")
     var points =0;
     var today=new Date;
     console.log(today)
