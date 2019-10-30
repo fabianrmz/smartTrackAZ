@@ -24,7 +24,7 @@ function checkUser(id){
     docRef.get().then(function(doc) {
         if (doc.exists) {
             if(doc.data().userType=="admin"){
-                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Recover surveys<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalAdmin">arrow_forward</i></h4></a></div></li> </ul> ';
+                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Recover surveys<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  onclick="getDocs()"  href="#modalAdmin"">arrow_forward</i></h4></a></div></li> </ul> ';
                 document.getElementById("optionPatient").innerHTML=surveyElement;
 
                 document.getElementById("emailUser").innerHTML+="<br>Admin🛡 ️"
@@ -287,5 +287,12 @@ function getFeedbacks(){
     });
 }
 
-
+function getDocs(){
+    db.collection("users").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        })
+    });
+}
     
