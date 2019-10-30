@@ -82,10 +82,8 @@
                 
             <br>
             <div class="row">
-              <div class="col s2"></div>
-              <div id="optionPatient" class="col s8" >
-                 
-              </div>
+              
+              <div id="optionPatient" class="col s12" > </div>
 
             </div>
 
@@ -98,33 +96,76 @@
             <div id="modalAbout" class="modal">
                 <div class="modal-content">
                   <h4>About us</h4>
-                  <p>A bunch of text</p>
+                  <p>Health is central to a functioning society and connects us all. We work with the industry and other partners to remove barriers to access for people, regardless of social or economic condition.
+
+                    Our approach is centred on our understanding of the healthcare systems and needs of the people who live in emerging economies. We develop medicines, create supporting programmes and channel our investments – including those focused on prevention and strengthening health systems – to meet the needs of communities.
+                    
+                    </p>
                 </div>
                 <div class="modal-footer">
                   <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
                 </div>
               </div>
-                <!--JavaScript at end of body for optimized loading-->
-                <!-- The core Firebase JS SDK is always required and must be listed first -->
+             
               </ul>
 
 
-                <!-- Modal Structure -->
+                <!-- Modal camera -->
               <div id="modalCamera" class="modal">
                 <div class="modal-content">
                   <h4>Scann it!</h4>
                   <p>Please scan your qr code</p>
 
-                  <video id="preview"></video>
+                  <video id="preview" style="width: 100%; height: auto;"></video>
                 </div>
                 <div class="modal-footer">
                   <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="closeCameraButton">Cancel</a>
                 </div>
               </div>
 
+               <!-- Modal coupons -->
+              <div id="modalCoupons" class="modal">
+                <div class="modal-content">
+                  <h4>My coupons</h4>
+                  <p>Astra Zeneca Policy, Coupons are a great way to save even more when shopping with us, and it is easy to use them at our stores. When accepting coupons, we follow the guidelines below to ensure all guests have the opportunity to purchase products at great prices.</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+              </div>
+               <!-- Modal feedback -->
+              <div id="modalFeedback" class="modal">
+                <div class="modal-content">
+                  <h4>My Feedback</h4>
+                  <p id="batchIde"></p>
+                  
+                  <p>
+                    Please tell how do you feel with our medicine
+                    <div class="row">
+                      <div class="input-field col s12">
+                          <div class="input-field col s12">
+                              <i class="material-icons prefix">feedback</i>
+                              <textarea id="description" class="materialize-textarea"></textarea>
+                              <label for="description">Description</label>
+                            </div>
+                       
+                      </div>
+                    </div>
+                          
+                  </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" onclick="reloadPage()" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                  <a href="#!" onclick="sendFeedBack()" class="modal-close waves-effect waves-green btn-flat">Send</a>
+                </div>
+              </div>
+          
+          
+
         
       </main>
-
+   <!--JavaScript at end of body for optimized loading-->
+                <!-- The core Firebase JS SDK is always required and must be listed first -->
       <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js" ></script>
       <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 
@@ -138,7 +179,7 @@
   <!-- Add Firebase products that you want to use -->
   <script src="/__/firebase/7.2.2/firebase-auth.js"></script>
   <script src="/__/firebase/7.2.2/firebase-firestore.js"></script>
-  <script src="js/firebaseServiceCDN.js">
+  <script src="js/firebaseServiceCDN.js"></script>
       
     
     </script>
