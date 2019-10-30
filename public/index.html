@@ -108,26 +108,29 @@
               </div>
              
               </ul>
-
+              
 
                 <!-- Modal camera -->
               <div id="modalCamera" class="modal">
                 <div class="modal-content">
                   <h4>Scann it!</h4>
-                  <p>Please scan your qr code</p>
-
-                  <video id="preview" style="width: 100%; height: auto;"></video>
+                  <p>Please scan a valid qr code from your medicine, it will automatically fill up the credentials</p>
+                  <video  id="preview" class="responsive-video"></video>
                 </div>
                 <div class="modal-footer">
-                  <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="closeCameraButton">Cancel</a>
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat" >Cancel</a>
+                  <a href="#!" class=" btn-flat" onclick="setCamera()">Ok</a>
                 </div>
               </div>
 
                <!-- Modal coupons -->
               <div id="modalCoupons" class="modal">
                 <div class="modal-content">
-                  <h4>My coupons</h4>
+                  <h4>My rewards</h4>
                   <p>Astra Zeneca Policy, Coupons are a great way to save even more when shopping with us, and it is easy to use them at our stores. When accepting coupons, we follow the guidelines below to ensure all guests have the opportunity to purchase products at great prices.</p>
+                  <h5 id="points">Current points</h5> 
+                  <p >History rewards:</p>
+                  <ul class="collapsible" id="historyPointsEarned"></ul>
                 </div>
                 <div class="modal-footer">
                   <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
@@ -159,6 +162,26 @@
                   <a href="#!" onclick="sendFeedBack()" class="modal-close waves-effect waves-green btn-flat">Send</a>
                 </div>
               </div>
+
+              <!-- Modal Structure -->
+              <div id="modalFeedbacks" class="modal">
+                <div class="modal-content">
+                  <h4>My feedbacks</h4>
+                  <p>Your recent feddbacks</p>
+                  
+                  <ul class="collapsible" id="feedbackList">
+                    <li>
+                      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    </li>
+                   
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+              </div>
+          
           
           
 

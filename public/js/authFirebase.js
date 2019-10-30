@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById("logButtons").innerHTML='<li><a href="#!" onclick="logOut()" id="buttonLog"><i class="material-icons">cancel</i>Log off</a></li>';
         checkUser(uid);
 
-        var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Make survey<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalCamera" onclick="setSurvey()" >arrow_forward</i></h4></a></div></li> <li class="collection-item"><div><h4>My rewards<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalCoupons" onclick="getCoupons()" >arrow_forward</i></h4></a></div></li> </ul> ';
+        var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Make survey<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalCamera"  >arrow_forward</i></h4></a></div></li> <li class="collection-item"><div><h4>My rewards<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalCoupons" onclick="getCoupons()" >arrow_forward</i></h4></a></div></li> <li class="collection-item"><div><h4>My feedbacks<a href="#!" class="secondary-content"><i class="material-icons modal-trigger" href="#modalFeedbacks"  onclick="getFeedbacks()" >arrow_forward</i></h4></a></div></li> </ul> ';
         document.getElementById("optionPatient").innerHTML=surveyElement;
 
     } else {

@@ -2,6 +2,8 @@ var lote;
 var uid;
 var medName;
 var medicineId;
+var monthNames = [ "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" ];
+
 var db = firebase.firestore();
 function closeSideNav(){
     M.AutoInit();
@@ -49,8 +51,9 @@ function checkUser(id){
 }
 
 
-function setSurvey(){
+function setCamera(){
 
+    document.getElementById("preview").requestFullscreen();
     
     let scanner = new Instascan.Scanner(
         {
@@ -61,9 +64,12 @@ function setSurvey(){
         lote=content;
         console.log(lote);
         scanner.stop();
+        document.exitFullscreen();
+        
         var instanced = M.Modal.getInstance(document.getElementById("modalCamera"));
         instanced.close();
         setModalFeedback(lote);
+        
 
     });
 
@@ -79,18 +85,42 @@ function setSurvey(){
     });
 
 
-    document.getElementById("closeCameraButton").addEventListener("click",function(){
-        scanner.stop();
-    });
+    
 
 }
 
 function getCoupons(){
-    console.log("in here we get the coupons on the modal available for the user")
+    console.log("in here we get the rewards on the modal available for the user")
+    var points =0;
+    var today=new Date;
+    console.log(today)
+    db.collection("rewards").where("userId", "==", uid)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            if( ( (doc.data().dueDate).toDate() )> new Date){
+                console.log(doc.id, " => ", doc.data());
+                points+=doc.data().points;
+                var dateT=(doc.data().dueDate).toDate();
+                var pointsEarned="Points earned: "+doc.data().points;
+                var dueDateIn= dateT.getDate()+" "+monthNames[dateT.getMonth()]+" of "+dateT.getFullYear();
+                document.getElementById("historyPointsEarned").innerHTML='<li> <div class="collapsible-header"><i class="material-icons">star</i>'+dueDateIn+'</div> <div class="collapsible-body"><span>'+pointsEarned+'</span></div>   </li>'
+            }
+            
+        });
+    }).then(function(){
+        
+        document.getElementById("points").innerHTML="Total points: "+points+"     <i class='material-icons'>star</i>";
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+
 }
 
 
 function setModalFeedback(lote){
+    
     var splitBatch=lote.split("_");
     var medRef=splitBatch[0];
     //set information for the modal 
@@ -146,7 +176,7 @@ function sendFeedBack(){
         console.log(batchDate);
         
         var dateMonthAgo = new Date(); 
-        dateMonthAgo.setDate(dateMonthAgo.getDate() - 90); // Set now + 30 days as the new date
+        dateMonthAgo.setDate(dateMonthAgo.getDate() - 90); // Set now - 90 days as the new date
         console.log(dateMonthAgo);
         
         if(batchDate>dateMonthAgo){
@@ -164,13 +194,27 @@ function sendFeedBack(){
                 medicineId: medicineId,
                 countryOri: countryOrigin,
                 countryDes: countryDestination,
-                batchId: batchId,
-                assetId: assetId,
-                userId: uid         
+                batch: lote,
+                userId: uid,
+                description: description    
             })
             .then(function() {
-                M.toast({html: "Your feedback has been recieved succesfully!, you have recieved a reward"});
+                M.toast({html: "Your feedback has been recieved succesfully!"});
                 console.log("Document successfully written!");
+                var dueDate = new Date(); 
+                dueDate.setDate(dateMonthAgo.getDate() + 90); // Set now + 30 days as the new date
+                db.collection("rewards").add({
+                    userId: uid,
+                    points: 55,
+                    dueDate: dueDate,
+                })
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                    
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
             })
             .catch(function(error) {
                 M.toast({html: "Ups, there has been a problem with your batch!"})
@@ -201,9 +245,34 @@ function sendFeedBack(){
 
         }
         */
+    }else{
+        M.toast({html: "Ups!, there has been a problem processing you batch or feedback"})
     }
     
     
+}
+
+
+function getFeedbacks(){
+    var ref=  document.getElementById("feedbackList");
+    ref.innerHTML="";
+    console.log(uid)
+    db.collection("pacientFeedbacks").where("userId", "==", uid)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var dateT= ((doc.data().feedbackDate).toDate());
+            var title= "Country: "+doc.data().countryOri+" " +dateT.getFullYear()+ ", "+dateT.getDate()+" of "+monthNames[dateT.getMonth()];
+            var content="Description: "+doc.data().description;
+            var liElem='<li>  <div class="collapsible-header"><i class="material-icons">filter_drama</i>'+title+'</div> <div class="collapsible-body"><span>'+content+'</span></div> </li>'
+            ref.innerHTML+=liElem;
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
 }
 
 
