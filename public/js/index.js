@@ -24,7 +24,7 @@ function checkUser(id){
 docRef.get().then(function(doc) {
         if (doc.exists) {
             if(doc.data().userType=="admin"){
-                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Track a Batch<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalBatch">arrow_forward</i></h4></a></div></li></ul> ';
+                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Track a Batch<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalBatch">arrow_forward</i></h4></a></div></li> <li class="collection-item"><div><h4>Show stadistics<a href="stadistics.html" class="secondary-content"><i class="material-icons"  >arrow_forward</i></h4></a></div></li></ul> ';
                 document.getElementById("optionPatient").innerHTML=surveyElement;
 
                 document.getElementById("emailUser").innerHTML+="<br>Admin🛡 ️"
