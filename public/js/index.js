@@ -24,9 +24,8 @@ function checkUser(id){
     docRef.get().then(function(doc) {
         if (doc.exists) {
             if(doc.data().userType=="admin"){
-                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Recover surveys<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalAdmin">arrow_forward</i></h4></a></div></li> </ul> ';
-                var makeFeedback =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Check batch<a href="#fb" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalFeedback">arrow_forward</i></h4></a></div></li> </ul> ';
-                document.getElementById("optionPatient").innerHTML=surveyElement + makeFeedback;
+                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Recover surveys<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalBatch">arrow_forward</i></h4></a></div></li> <li class="collection-item"><div><h4>Register batch checkpoint<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  onclick="getBatchFeed()"  href="#modalCheckpoint">arrow_forward</i></h4></a></div></li></ul> ';
+                document.getElementById("optionPatient").innerHTML=surveyElement;
 
                 document.getElementById("emailUser").innerHTML+="<br>Admin🛡 ️"
 
@@ -169,6 +168,37 @@ function reloadPage(){
     location.reload();
 }
 
+function sendCheckpoint() {
+    var batch = document.getElementById("chBatch").value;
+    var isCool = document.getElementById("isCool").value;
+    var num = document.getElementById("chNumAs").value;
+    var loc = document.getElementById("chLocat").value;
+    batchDate= firebase.firestore.FieldValue.serverTimestamp();
+    if (isNaN(num)) {
+        db.collection("feedbacks").add({
+            locationId: loc,
+            lote: batch,
+            totalAssets: num,
+            valid: isCool,
+            userID: uid,
+            registerDate: batchDate
+        }).then(function() {
+            M.toast({html: "Your feedback has been recieved succesfully!"});
+            console.log("Document successfully written!")
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+        })
+        .catch(function(error) {
+            M.toast({html: "Ups, there has been a problem with your batch!"})
+            console.log(error)
+        });
+    } else {
+        
+    }
+}
+
+
 function sendFeedBack(){
     //obtain data to upload and validate it
     var description= document.getElementById('description').value;
@@ -288,5 +318,33 @@ function getFeedbacks(){
     });
 }
 
+function getDocs(){
+    db.collection("users").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        })
+    });
+}
 
-    
+function getBatchFeed(){
+    var ref=  document.getElementById("batchList");
+    var batch = document.getElementById("batch").value;
+    ref.innerHTML="";
+    db.collection("feedbacks").where("lote", "==", batch)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var dateT= ((doc.data().feedbackDate).toDate());
+            var title= "Country: "+doc.data().countryOri+" " +dateT.getFullYear()+ ", "+dateT.getDate()+" of "+monthNames[dateT.getMonth()];
+            var content="Description: "+doc.data().description;
+            var liElem='<li>  <div class="collapsible-header"><i class="material-icons">filter_drama</i>'+title+'</div> <div class="collapsible-body"><span>'+content+'</span></div> </li>'
+            ref.innerHTML+=liElem;
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+}
