@@ -21,7 +21,7 @@ function checkUser(id){
     uid=id;
     var docRef = db.collection("users").doc(uid);
     
-    docRef.get().then(function(doc) {
+docRef.get().then(function(doc) {
         if (doc.exists) {
             if(doc.data().userType=="admin"){
                 var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Track a Batch<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalBatch">arrow_forward</i></h4></a></div></li></ul> ';
