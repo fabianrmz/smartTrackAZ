@@ -45,6 +45,8 @@ function toXLXS() {
             final.push(fbUid);
             final.push(fbValid);
         })
+    }).catch(function(error) {
+        console.log("Error getting cached document:", error);
     });
 
     //locations data
