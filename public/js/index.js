@@ -24,7 +24,7 @@ function checkUser(id){
     docRef.get().then(function(doc) {
         if (doc.exists) {
             if(doc.data().userType=="admin"){
-                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Recover surveys<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalBatch">arrow_forward</i></h4></a></div></li> <li class="collection-item"><div><h4>Register batch checkpoint<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  onclick="getBatchFeed()"  href="#modalCheckpoint">arrow_forward</i></h4></a></div></li></ul> ';
+                var surveyElement =' <ul class="collection with-header"> <li class="collection-item"><div><h4>Track a Batch<a href="#!" class="secondary-content"><i class="material-icons modal-trigger"  href="#modalBatch">arrow_forward</i></h4></a></div></li></ul> ';
                 document.getElementById("optionPatient").innerHTML=surveyElement;
 
                 document.getElementById("emailUser").innerHTML+="<br>Admin🛡 ️"
@@ -206,7 +206,7 @@ function sendFeedBack(){
     console.log(description)
     var splitBatch=lote.split("_");
     if(lote.length==26 && splitBatch.length==6 && description.length>24){
-        //SYM_010119_MEX_USA_ABCD_FA -> example for batch 26 characthers long
+        //SYM_010119_MEX_USA_ABCD_FA -> example for 26 characthers long
         var splitBatch=lote.split("_");
         console.log(splitBatch)
         var dateFormat=splitBatch[1];
